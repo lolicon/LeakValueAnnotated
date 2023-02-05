@@ -2,9 +2,9 @@
 
 ​	LeakValue是 [Michal Bednarski](https://github.com/michalbednarski/) 在2023年初, 组合利用AOSP中的LazyValue机制存在的两个漏洞,最终成功实现获取本应仅存在于SystemServer进程中的任意App的IApplicationThread对应的Binder, 通过对其发送aidl调用, 实现所有App的任意代码执行(ACE)的利用手法
 
-  	Michal在公开所有技术细节的同时,给出了一个非常详尽的WriteUp和[poc](https://github.com/michalbednarski/LeakValue),非常值得一看,同时由于信息量过大,牵扯代码过多,以及Reparcel漏洞及其缓解机制引入过程的上下文读者不一定清楚导致阅读有一定门槛, 本文将分为一个系列,详尽的介绍LeakValue相关的背景知识以及利用原理
+​    Michal在公开所有技术细节的同时,给出了一个非常详尽的WriteUp和[poc](https://github.com/michalbednarski/LeakValue),非常值得一看,同时由于信息量过大,牵扯代码过多,以及Reparcel漏洞及其缓解机制引入过程的上下文读者不一定清楚导致阅读有一定门槛, 本文将分为一个系列,详尽的介绍LeakValue相关的背景知识以及利用原理
 
-  	本系列将按照以下章节规划,目标是在每一个章节中引入的内容能够独立自洽,最终在理解LeakValue漏洞的同时,引入更多WriteUp中没有涉及或一笔带过的部分, 
+​     本系列将按照以下章节规划,目标是在每一个章节中引入的内容能够独立自洽,最终在理解LeakValue漏洞的同时,引入更多WriteUp中没有涉及或一笔带过的部分, 
 
 
 ### Parcel
